@@ -3,7 +3,7 @@
     <input name="title "class="form-control m-1" formControlName="title" type="text" #input />
     <textarea class="form-control m-1" formControlName="body" id="" cols="30" rows="10"></textarea>
     <button
-      class="btn btn-success btn-sm m-2"
+      class="btn btn-success btn-sm m-2" [disabled]="contactForm.invalid"
     >
       Send message
     </button>

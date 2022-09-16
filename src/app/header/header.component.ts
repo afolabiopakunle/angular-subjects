@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../services/message.service';
 
 export interface IMessage {
@@ -21,17 +21,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.contactForm = new FormGroup({
-      title: new FormControl(),
-      body: new FormControl()
+      title: new FormControl('', [Validators.required, this.noWhitespaceValidator]),
+      body: new FormControl('', [Validators.required, this.noWhitespaceValidator])
     })
   }
 
-  sendMessage(message: IMessage) {
-    // this.messageService.sendMessage(message);
-  }
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+}
 
   submit(contactForm) {
     this.messageService.sendMessage(contactForm)
-    console.log(contactForm)
+    this.contactForm.reset()
   }
 }

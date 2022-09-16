@@ -10,11 +10,10 @@ export class MessageService {
 
   sendMessage(message: string) {
     this.messagesSubject.next(message);
-    console.log(message)
   }
 
   receiveMessage() {
-    return this.messagesSubject.asObservable
+    return this.messagesSubject.asObservable()
   }
 
 }

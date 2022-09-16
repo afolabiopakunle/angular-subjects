@@ -8,13 +8,16 @@ import { MessageService } from '../services/message.service';
 })
 export class HeaderComponent implements OnInit {
 
+  text = '';
+  
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
   }
 
   sendMessage(text) {
-    this.messageService.sendMessage(text)
+    this.messageService.sendMessage(text);
+    this.text = '';
   }
 
 }

@@ -1,9 +1,9 @@
 <div>
-  <form>
-    <input name="title "class="form-control" [(ngModel)]="text" type="text" #input />
+  <form [formGroup]="contactForm" (ngSubmit)="submit(contactForm.value)">
+    <input name="title "class="form-control m-1" formControlName="title" type="text" #input />
+    <textarea class="form-control m-1" formControlName="body" id="" cols="30" rows="10"></textarea>
     <button
       class="btn btn-success btn-sm m-2"
-      (click)="sendMessage(input.value)"
     >
       Send message
     </button>

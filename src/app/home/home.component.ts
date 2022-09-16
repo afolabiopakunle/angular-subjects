@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IMessage } from '../header/header.component';
 import { MessageService } from '../services/message.service';
 
 @Component({
@@ -8,12 +9,13 @@ import { MessageService } from '../services/message.service';
 })
 export class HomeComponent implements OnInit {
 
-  text: string;
+  messages: IMessage[] = [];
+
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
-    this.messageService.receiveMessage().subscribe((data) => {
-      this.text = data;
+    this.messageService.receiveMessage().subscribe((data: IMessage) => {
+      this.messages.push(data)
     })
   }
 

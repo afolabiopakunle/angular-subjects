@@ -1,1 +1,6 @@
-<!-- {{ text }} -->
+<div *ngFor="let message of messages">
+<h2>{{ message.title }}</h2>
+<p>{{ message.body }}</p>
+</div>
+
+<p *ngIf="messages.length === 0">No list yet</p>
